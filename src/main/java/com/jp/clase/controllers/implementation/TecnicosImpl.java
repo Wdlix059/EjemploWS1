@@ -16,11 +16,11 @@ public class TecnicosImpl implements ITecnicos {
 		//simular la lista
 		Tecnicos tecnico = new Tecnicos();
 		tecnico.setIdtecnicos(1);
-		tecnico.setPrimerNombre("Juan");
-		tecnico.setSegundoNombre("Antonio");
-		tecnico.setPrimerApellido("Perez");
-		tecnico.setSegundoApellido("Lopez");
-		tecnico.setFechaNacimiento("25/08/1980");
+		tecnico.setPrimernombre("Juan");
+		tecnico.setSegundonombre("Antonio");
+		tecnico.setPrimerapellido("Perez");
+		tecnico.setSegundoapellido("Lopez");
+		tecnico.setFechanacimiento("25/08/1980");
 		
 		List<Tecnicos> listTecnicos = new ArrayList<>();
 		
@@ -31,7 +31,7 @@ public class TecnicosImpl implements ITecnicos {
 
 	@Override
 	public String save(Tecnicos tecnico) {
-		return tecnico.getPrimerApellido();
+		return tecnico.getPrimerapellido();
 	}
 
 	@Override

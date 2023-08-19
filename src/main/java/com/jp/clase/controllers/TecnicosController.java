@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jp.clase.controllers.dao.IDBTecnicos;
 import com.jp.clase.controllers.entity.Tecnicos;
 import com.jp.clase.controllers.interfaces.ITecnicos;
 
@@ -23,6 +24,9 @@ public class TecnicosController {
 	@Autowired
 	private ITecnicos tecnicos;
 	
+	@Autowired
+	private IDBTecnicos tecnicosdao;
+	
 	@GetMapping(value = "/getMensaje", produces = MediaType.TEXT_PLAIN_VALUE)
 	public String getMensaje(@RequestHeader("estudiante") String estudiante) {
 		return "Hola otra vez: "+ estudiante;
@@ -30,13 +34,14 @@ public class TecnicosController {
 	
 	@GetMapping(value = "/getTecnicos", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Tecnicos> getTecnicos() {
-		return tecnicos.getAll();
+		return tecnicosdao.findAll();
 	}
 	
 	@PostMapping(value = "/saveTecnico", consumes = MediaType.APPLICATION_JSON_VALUE, 
 			produces = MediaType.TEXT_PLAIN_VALUE)
 	public String saveTecnico(@RequestBody Tecnicos tecnico) {
-		return tecnicos.save(tecnico);
+		int id = tecnicosdao.save(tecnico);
+		return "Registro creado con id: " +id;
 	}
 	
 	@PutMapping(value = "/updateTecnico/{idtecnicos}")
